@@ -1,0 +1,31 @@
+# Andrew Chuah and Lily Haynes
+# I pledge my honor that I have abided by the Stevens Honor System.
+
+# The code below makes Picobot travel to the northern tip of the map.
+# If there's nothing around, especially if there's nothing north, move north, back to state 0
+0 x*** -> N 0
+
+# If it hits the northeastern wall, go west, back to state 0
+0 NExx -> W 0
+
+# If it hits the northwestern wall, go east, back to state 0
+0 NxWx -> E 0
+
+# If it's surrounded by north, east, and west walls, go south, and go to state 1
+0 NEWx -> S 1
+
+# The code below makes Picobot cover the spaces row by row.
+# If at any point it hits the north, east, and southern walls, and there's nothing west, go west, back to state 1
+1 **x* -> W 1
+
+# If it hits the west wall, make it go east, go to state 2
+1 **W* -> E 2
+
+# If at any point it hits the north, west, and southern walls, and there's nothing east, go east, back to state 2
+2 *x** -> E 2
+
+# If it hits the east wall, make it go west, go to state 3
+2 *E** -> W 3
+
+# If at any point it hits the north, east, or west walls, go south, go to state 1
+3 ***x -> S 1
